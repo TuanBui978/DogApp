@@ -1,6 +1,8 @@
 package com.example.dogapp.presentation.ui.view.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -50,6 +52,7 @@ fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = viewModel(fac
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
 @Composable
 fun DogItem(modifier: Modifier = Modifier, name: String = "Unknown", breedGroup: String = "Unknown", imageUrl: String = "https://raw.githubusercontent.com/DevTides/DogsApi/master/1.jpg") {
@@ -62,7 +65,7 @@ fun DogItem(modifier: Modifier = Modifier, name: String = "Unknown", breedGroup:
             Row(modifier = Modifier.padding(10.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text(text = name, fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier
                     .padding(top = 5.dp, bottom = 5.dp)
-                    .weight(1f), maxLines = 1)
+                    .weight(1f).basicMarquee(), maxLines = 1)
                 IconButton(onClick = { isClick = !isClick }) {
                     val tintColor = if (isClick) {
                         Color.Red
@@ -74,8 +77,7 @@ fun DogItem(modifier: Modifier = Modifier, name: String = "Unknown", breedGroup:
                 }
             }
             Text(text = breedGroup, color = Color.Gray, modifier = Modifier
-                .padding(start = 5.dp, end = 5.dp, bottom = 10.dp), maxLines = 1)
-
+                .padding(start = 5.dp, end = 5.dp, bottom = 10.dp).basicMarquee(), maxLines = 1)
         }
     }
 
